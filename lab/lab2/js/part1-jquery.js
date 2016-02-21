@@ -149,5 +149,55 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 ===================== */
 
 $(document).ready(function() {
+  //Task 1
+  $('#text-label1').text('Job Title');
+  $('#text-label2').text('Lat');
+  $('#text-label3').text('Long');
+  $('#number-label').text('Radius');
+  $('#checkbox-label1').text('US Citizenship Required');
+  $('#checkbox-label2').text('Paid');
+  $('#color-label').text('Color');
+  $('button').text('Go');
+  //Task 2
+  $('#text-input1').val('Planner');
+  $('#text-input2').val('39.953');
+  $('#text-input3').val('-75.168');
+  $('#numeric-input').val(50);
+  //Task 4
+  $("#text-input1").prop("disabled",false);
+  $("#text-input2").prop("disabled",false);
+  $("#text-input3").prop("disabled",false);
+  $("#numeric-input").prop("disabled",false);
+  // Check #x
+
+    // Uncheck #x
+  $( "#cbox-input1" ).prop( "disabled", false );
+  $( "#color-input" ).prop( "disabled", false);
+  $( "#cbox-input2" ).prop( "disabled", false );
+
+  $( "button" ).click(function() {
+    var myObj = {"Job": $('#text-input1').val(),
+    "Lat": $('#text-input2').val(),
+    "Long": $('#text-input3').val(),
+    "Radius": $('#numeric-input').val(),
+    "Color": $('#color-input').val(),
+    "US": $("#cbox-input1" ).val(),
+
+  };
+
+    var geojsonMarkerOptions = {
+      radius: 8,
+      fillColor: myObj.Color,
+      color: "#000",
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+  };
+  console.log(myObj);
+  L.circleMarker([myObj.Lat,myObj.Long],geojsonMarkerOptions).addTo(map).bindPopup(myObj.Job)
+
+});
+
+
   // Do your stuff here
 });
